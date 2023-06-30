@@ -1121,7 +1121,7 @@ curl -v -X POST \
 }
 ```
 
-#### Request example with client application <ApiLifecycle access="beta" />
+#### Request example with client application
 
 ```bash
 curl -v -X POST \
@@ -1209,7 +1209,7 @@ curl -v -X PATCH \
 }
 ```
 
-#### Request example with client application <ApiLifecycle access="beta" />
+#### Request example with client application
 
 ```bash
 curl -v -X PATCH \
@@ -1303,7 +1303,7 @@ curl -v -X GET \
   }
 }
 ```
-#### Response example with client application <ApiLifecycle access="beta" />
+#### Response example with client application
 
 ```json
 {
@@ -1952,6 +1952,58 @@ curl -v -X GET \
 
 
 <ApiOperation method="get" url="/api/v1/groups/${groupId}/roles" />
+
+Lists all Roles assigned to a Group
+
+##### Request parameters
+
+
+| Parameter         | Description                                             | Param Type  | DataType  | Required  |
+| :---------------- | :------------------------------------------------------ | :---------- | :-------- | :-------- |
+| `groupId`           | ID of a Group                                         | URL         | String    | TRUE      |
+
+##### Response parameters
+
+
+Array of [Roles](#role-object)
+
+##### Request example
+
+
+```bash
+curl -v -X GET \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+-H "Authorization: SSWS ${api_token}" \
+"https://${yourOktaDomain}/api/v1/groups/00gsr2IepS8YhHRFf0g3/roles"
+```
+
+###### Response example
+
+
+```json
+[
+    {
+        "id": "IFIFAX2BIRGUSTQ",
+        "label": "Application Administrator",
+        "type": "APP_ADMIN",
+        "status": "ACTIVE",
+        "created": "2019-02-27T14:48:59.000Z",
+        "lastUpdated": "2019-02-27T14:48:59.000Z",
+        "assignmentType": "GROUP",
+        "_links": {
+            "assignee": {
+                "href": "https://{yourOktaDomain}/api/v1/groups/00gsr2IepS8YhHRFf0g3"
+            }
+        }
+    }
+]
+```
+
+#### List Roles assigned to a App
+
+
+<ApiOperation method="get" url="/oauth2/v1/clients/${groupId}/roles" />
 
 Lists all Roles assigned to a Group
 
@@ -3700,7 +3752,7 @@ The ID of a Member is unique to the Binding, whereas the link that points to the
     }
 ```
 
-##### Client Application as member <ApiLifecycle access="beta" />
+##### Client Application as member
 
 ```json
     {
